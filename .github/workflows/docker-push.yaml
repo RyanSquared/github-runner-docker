@@ -1,0 +1,18 @@
+on: [push]
+
+name: Docker Build and Push
+
+jobs:
+  docker-build:
+    name: Docker Build and Push
+    runs-on: self-hosted  # self-bootstrapped!
+    env:
+      USERNAME: RyanSquared
+      REPOSITORY: ghcr.io/RyanSquared/github-runner-docker
+    steps:
+    - uses: actions/checkout@v2
+    - run: sudo apt-get install -y docker.io
+    - run: git clone -b v2.295.0 https://github.com/actions/runner
+    - run: docker build -t $REPOSITORY
+    - run: echo $GITHUB_TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
+    - run: docker push $REPOSITORY:latest
