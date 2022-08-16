@@ -11,6 +11,7 @@ jobs:
       REPOSITORY: ghcr.io/ryansquared/github-runner-docker
     steps:
     - uses: actions/checkout@v2
+    - run: git verify-commit HEAD
     - run: sudo apt-get install -y docker.io
     - run: git clone -b v2.295.0 https://github.com/actions/runner
     - run: docker build -t $REPOSITORY .
