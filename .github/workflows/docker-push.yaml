@@ -13,6 +13,6 @@ jobs:
     - uses: actions/checkout@v2
     - run: sudo apt-get install -y docker.io
     - run: git clone -b v2.295.0 https://github.com/actions/runner
-    - run: docker build -t $REPOSITORY
+    - run: docker build -t $REPOSITORY .
     - run: echo $GITHUB_TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
     - run: docker push $REPOSITORY:latest
