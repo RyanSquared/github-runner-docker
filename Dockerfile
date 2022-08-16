@@ -60,4 +60,5 @@ COPY --from=node-16-builder /opt/out /opt/runner/externals/node16
 
 WORKDIR /opt/runner
 USER runner
-# TODO: entrypoint?
+ADD entrypoint.sh /opt/runner/entrypoint.sh
+ENTRYPOINT ["/opt/runner/entrypoint.sh"]
