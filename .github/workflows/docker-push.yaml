@@ -15,7 +15,7 @@ jobs:
     - run: sudo apt-get install -y docker.io
     - run: git clone -b v2.295.0 https://github.com/actions/runner
     - run: sudo docker build -t $REPOSITORY .
-    - run: echo $GITHUB_TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
+    - run: echo $GITHUB_TOKEN | sudo docker login ghcr.io -u $USERNAME --password-stdin
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: sudo docker push $REPOSITORY:latest
