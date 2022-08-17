@@ -5,6 +5,9 @@ set -x
 for key in /opt/keys/gpg/*; do
   gpg --import $key
 done
+cat /opt/signing_keys.txt | while read key; do
+  gpg --recv-keys $key;
+done
 mkdir -p config
 sudo chown runner:runner persistent
 
