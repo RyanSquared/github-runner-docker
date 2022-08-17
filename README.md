@@ -1,4 +1,4 @@
-# github-runner-dockerfile
+# github-runner-docker
 Dockerfile and build setup for running GitHub runners in Docker containers
 
 ### Usage
