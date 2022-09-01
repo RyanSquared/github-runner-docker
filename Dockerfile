@@ -5,7 +5,7 @@ ARG PACKAGE_RUNTIME=linux-x64
 # Also accepts: Debug
 ARG BUILD_CONFIG=Release
 # Significant: trim leading v
-ARG RUNNER_VERSION=2.296.0
+ARG RUNNER_VERSION=2.296.1
 
 ADD runner /opt/runner
 WORKDIR /opt/runner/src
