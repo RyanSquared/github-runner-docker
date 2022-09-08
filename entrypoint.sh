@@ -2,6 +2,10 @@
 
 set -x
 
+url="--url $1"
+token="--token $2"
+[ ! -z "$3" ] && labels="--labels $3"
+
 for key in /opt/keys/gpg/*; do
   gpg --import $key
 done
@@ -16,7 +20,9 @@ if [ -f persistent/runner ]; then
   cp persistent/credentials .credentials
   cp persistent/credentials_rsaparams .credentials_rsaparams
 else
-  ./config.sh --url "$1" --token "$2" --unattended --disableupdate
+  # Note: this passes both the option and the value, quoting the following
+  # variables would result in INVALID BEHAVIOR, do NOT quote the variables.
+  ./config.sh $url $token $labels --unattended --disableupdate
   cp .runner persistent/runner
   cp .credentials persistent/credentials
   cp .credentials_rsaparams persistent/credentials_rsaparams
