@@ -46,8 +46,8 @@ FROM debian:bullseye
 # We need the following for nodesource
 RUN apt-get update && apt-get upgrade -y && DEBIAN_FRONTEND=noninteractive apt-get install -y gpg apt-transport-https ca-certificates
 
-# Create runner user, with sudo permission
-RUN apt-get update && apt-get upgrade -y && DEBIAN_FRONTEND=noninteractive apt-get install -y sudo git liblttng-ust0 libkrb5-3 zlib1g libssl1.1 libicu67 iputils-ping curl build-essential pkg-config
+# Create runner user, with sudo and docker permission
+RUN apt-get update && apt-get upgrade -y && DEBIAN_FRONTEND=noninteractive apt-get install -y sudo git liblttng-ust0 libkrb5-3 zlib1g libssl1.1 libicu67 iputils-ping curl build-essential pkg-config docker.io
 RUN useradd -m runner && usermod -aG sudo runner && usermod -aG docker runner
 RUN echo "%sudo ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
 
