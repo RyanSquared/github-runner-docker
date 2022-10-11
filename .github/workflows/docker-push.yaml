@@ -6,18 +6,19 @@ jobs:
   docker-build:
     name: Docker Build and Push
     runs-on: self-hosted  # self-bootstrapped!
-    env:
-      USERNAME: RyanSquared
-      REPOSITORY: ghcr.io/ryansquared/github-runner-docker
     steps:
-    - uses: actions/checkout@v2
-    - run: git verify-commit HEAD
-    - run: sudo apt-get install -y docker.io
-    - run: sudo docker build -t $REPOSITORY .
-    - run: echo $GITHUB_TOKEN | sudo docker login ghcr.io -u $USERNAME --password-stdin
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - run: sudo docker push $REPOSITORY:latest
+    - uses: docker/setup-buildx-action@v2
+      with:
+        driver-opts: env.BUILDKIT_STEP_LOG_MAX_SIZE=10485760
+    - uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: ghcr.io/ryansquared/github-runner-docker:latest-github
   docker-build-github:
     name: Docker Build and Push - GitHub Hosted
     runs-on: ubuntu-latest
