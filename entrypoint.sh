@@ -2,6 +2,8 @@
 
 set -x
 
+sudo chown root:docker /var/run/docker.sock
+
 url="--url $1"
 token="--token $2"
 [ ! -z "$3" ] && labels="--labels $3"
