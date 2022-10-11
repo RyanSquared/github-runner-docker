@@ -48,7 +48,7 @@ RUN apt-get update && apt-get upgrade -y && DEBIAN_FRONTEND=noninteractive apt-g
 
 # Create runner user, with sudo permission
 RUN apt-get update && apt-get upgrade -y && DEBIAN_FRONTEND=noninteractive apt-get install -y sudo git liblttng-ust0 libkrb5-3 zlib1g libssl1.1 libicu67 iputils-ping curl build-essential pkg-config
-RUN useradd -m runner && usermod -aG sudo runner
+RUN useradd -m runner && usermod -aG sudo runner && usermod -aG docker runner
 RUN echo "%sudo ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers
 
 COPY --from=runner-builder /opt/runner/_layout /opt/runner
