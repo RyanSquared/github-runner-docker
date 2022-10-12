@@ -18,7 +18,7 @@ jobs:
     - uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ghcr.io/ryansquared/github-runner-docker:latest-github
+        tags: ghcr.io/ryansquared/github-runner-docker:latest
   docker-build-github:
     name: Docker Build and Push - GitHub Hosted
     runs-on: ubuntu-latest
