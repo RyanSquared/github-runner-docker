@@ -80,10 +80,6 @@ You can pass the following to Docker to get extra functionality:
 
 ### Updating
 
-The following files should be updated:
-
-- `Dockerfile`: the RUNNER_VERSION argument
-- `.github/workflows/docker-push.yaml`: the `git clone` command
-- `README.md`: the usage instructions
-
-Be sure to pull the latest version of the runner repository before building.
+The Dockerfile contains a tag of the GitHub actions/runner repository that
+contains the version that is built and pulled. That is the only thing that
+needs to be edited.
