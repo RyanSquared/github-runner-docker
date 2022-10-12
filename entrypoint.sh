@@ -2,7 +2,9 @@
 
 set -x
 
-sudo chown root:docker /var/run/docker.sock
+if ! sudo chown root:docker /var/run/docker.sock; then
+  echo "NOTE: We don't have a Docker socket"
+fi
 
 url="--url $1"
 token="--token $2"
