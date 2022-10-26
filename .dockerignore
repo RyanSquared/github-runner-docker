@@ -1,0 +1,3 @@
+*
+# Only allow entrypoint.sh
+!entrypoint.sh
