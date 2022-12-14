@@ -5,7 +5,7 @@ ARG PACKAGE_RUNTIME=linux-x64
 # Also accepts: Debug
 ARG BUILD_CONFIG=Release
 # Significant: trim leading v
-ARG RUNNER_VERSION=2.298.2
+ARG RUNNER_VERSION=2.299.1
 
 RUN git clone -b v$RUNNER_VERSION https://github.com/actions/runner /opt/runner
 WORKDIR /opt/runner/src
